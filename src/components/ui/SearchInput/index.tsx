@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { FC } from 'react';
 
+import Icon from '../Icon';
 import s from './styles.module.scss';
 
 interface Props {
@@ -24,7 +24,7 @@ export const SearchInput: FC<Props> = ({ searchValue, setSearchValue }) => {
         onChange={onChange}
       />
       <figure className={s.searchBarImage}>
-        <Image alt="search" src="images/svg/search.svg" fill />
+        <Icon name="search" />
       </figure>
     </div>
   );

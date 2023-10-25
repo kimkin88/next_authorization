@@ -1,5 +1,32 @@
-.layout {
+@import 'src/styles/mixins';
+
+.authLayoutWrapper {
+  padding-top: 5.5rem;
+  @include landing-container(10rem);
+  background: no-repeat url('/images/pages/auth/auth_bg.svg');
+  background-size: 60%;
+  background-position: left bottom;
+
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  flex: 1 1 auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  & > div {
+    width: 50%;
+  }
+
+  @include big-lg-device {
+    background-size: 100%;
+    background-position: center bottom;
+    .mask {
+      display: none;
+    }
+    & > div {
+      width: 100%;
+    }
+  }
 }

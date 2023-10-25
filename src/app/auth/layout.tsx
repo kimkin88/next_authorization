@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
 
-export default function AuthLayout({ children }: { children: ReactNode }) {
-  return <div>{children}</div>;
+import s from './layout.module.scss';
+
+export default async function AuthLayout({ children }: { children: ReactNode }) {
+  return (
+    <div className={s.authLayoutWrapper}>
+      <div className={s.mask} />
+      <div>{children}</div>
+    </div>
+  );
 }

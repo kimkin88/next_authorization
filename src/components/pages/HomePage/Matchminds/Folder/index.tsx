@@ -9,16 +9,25 @@ interface Props {
   orangeText: string;
   description: string;
   buttonText?: string;
+  onClick: () => void;
 }
 
-const Folder: FC<Props> = ({ whiteText, orangeText, description, buttonText }) => {
+const Folder: FC<Props> = ({
+  whiteText,
+  orangeText,
+  description,
+  buttonText,
+  onClick,
+}) => {
   return (
     <div className={s.folder}>
       <Title name="h2">
         {whiteText} <span>{orangeText}</span>
       </Title>
       <h5>{description}</h5>
-      <Button styleType="bg">{buttonText}</Button>
+      <Button styleType="bg" onClick={onClick}>
+        {buttonText}
+      </Button>
     </div>
   );
 };

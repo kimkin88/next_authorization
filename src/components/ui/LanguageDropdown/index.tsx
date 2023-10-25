@@ -2,11 +2,10 @@
 
 import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
 import { FC, useEffect, useRef, useState } from 'react';
 
 import Icon from '@/components/ui/Icon';
-import { languages } from '@/constants/languages';
+import { LANGUAGES } from '@/constants/languages';
 import { getTransition, LANGUAGE_MENU_VARIANTS } from '@/utils/animations';
 
 import s from './styles.module.scss';
@@ -18,7 +17,7 @@ interface Props {
 export const LanguageDropdown: FC<Props> = ({ isReverted }) => {
   const [active, setActive] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const [language, setLanguage] = useState(languages[0]);
+  const [language, setLanguage] = useState(LANGUAGES[0]);
 
   const handleChange = (e: any): void => {
     if (!ref.current?.contains(e.target)) {
@@ -41,7 +40,7 @@ export const LanguageDropdown: FC<Props> = ({ isReverted }) => {
     >
       <div className={s.language}>
         <figure className={s.imageContainer}>
-          <Image src="images/svg/globe.svg" alt="globe" fill />
+          <Icon name="globe" />
         </figure>
         <p>{language.label}</p>
         <Icon name="langArrow" className={cn(s.icon, { [s.rotated]: active })} />
@@ -56,9 +55,8 @@ export const LanguageDropdown: FC<Props> = ({ isReverted }) => {
             variants={LANGUAGE_MENU_VARIANTS}
             transition={{ ...getTransition() }}
           >
-            {languages
-              .filter(({ value }) => value !== language.value)
-              .map((lang, idx) => (
+            {LANGUAGES.filter(({ value }) => value !== language.value).map(
+              (lang, idx) => (
                 <div
                   onClick={() => {
                     setLanguage(lang);
@@ -67,7 +65,8 @@ export const LanguageDropdown: FC<Props> = ({ isReverted }) => {
                 >
                   {lang.label}
                 </div>
-              ))}
+              ),
+            )}
           </motion.div>
         )}
       </AnimatePresence>

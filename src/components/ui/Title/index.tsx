@@ -21,6 +21,9 @@ const titles = {
   h2: (children: ReactNode, className?: string) => (
     <h2 className={cn(s.h2, className)}>{children}</h2>
   ),
+  purpleH2: (children: ReactNode, className?: string) => (
+    <h2 className={cn(s.purpleH2, className)}>{children}</h2>
+  ),
 };
 
 export const Title: FC<PropsWithChildren<Props>> = ({ children, name, className }) => {

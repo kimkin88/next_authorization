@@ -2,6 +2,9 @@
 
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import { useCookies } from 'next-client-cookies';
 import { FC, Fragment, useState } from 'react';
 
 import { Button } from '@/components/ui';
@@ -19,12 +22,15 @@ import s from './styles.module.scss';
 const Header: FC = () => {
   const pathname = usePathname();
   const { push } = useRouter();
+  const { data: session } = useSession();
 
   const isFaqs = pathname === '/';
   const viewerState = useScroll(isFaqs ? 20 : 50);
 
   const [navActive, setNavActive] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+
+  const cookies = useCookies();
 
   return (
     <header
@@ -44,9 +50,21 @@ const Header: FC = () => {
         </div>
         <Logo />
         <div className={s.mobileBtn}>
-          <Button onClick={() => push(ROUTES.AUTH.REGISTRATION)} styleType={'clear'}>
-            Sign up
-          </Button>
+          {session ? (
+            <Button
+              onClick={() => {
+                signOut();
+                cookies.remove('apiToken');
+              }}
+              styleType={'clear'}
+            >
+              Sign out
+            </Button>
+          ) : (
+            <Button onClick={() => push(ROUTES.AUTH.REGISTRATION)} styleType={'clear'}>
+              Sign up
+            </Button>
+          )}
         </div>
 
         <div className={s.container}>
@@ -60,12 +78,26 @@ const Header: FC = () => {
         <div className={s.btnsContainer}>
           <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
           <LanguageDropdown />
-          <Button onClick={() => push(ROUTES.AUTH.LOGIN)} styleType={'clear'}>
-            Log in
-          </Button>
-          <Button onClick={() => push(ROUTES.AUTH.REGISTRATION)} styleType={'bg'}>
-            Sign up
-          </Button>
+          {session ? (
+            <Button
+              onClick={() => {
+                signOut();
+                cookies.remove('apiToken');
+              }}
+              styleType={'bg'}
+            >
+              Sign out
+            </Button>
+          ) : (
+            <>
+              <Button onClick={() => push(ROUTES.AUTH.LOGIN)} styleType={'clear'}>
+                Log in
+              </Button>
+              <Button onClick={() => push(ROUTES.AUTH.REGISTRATION)} styleType={'bg'}>
+                Sign up
+              </Button>
+            </>
+          )}
         </div>
       </nav>
       <Sidebar isActive={navActive} onClose={() => setNavActive(false)} />

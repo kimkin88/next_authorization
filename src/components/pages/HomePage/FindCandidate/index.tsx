@@ -1,10 +1,14 @@
+'use client';
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
 import AnimatedSection from '@/components/animated/AnimatedSection';
 import ListItemWithIcon from '@/components/pages/HomePage/common/ListItemWithIcon';
 import SectionLabel from '@/components/pages/HomePage/common/SectionLabel';
 import { Button, Title } from '@/components/ui';
+import ROUTES from '@/constants/routes';
 import { convertImageUrl } from '@/utils/convertImageUrl';
 
 import s from './styles.module.scss';
@@ -22,6 +26,7 @@ interface Props {
 }
 
 const FindCandidate: FC<Props> = ({ text, content }) => {
+  const { push } = useRouter();
   return (
     <AnimatedSection>
       <div className={s.wrapper}>
@@ -47,7 +52,14 @@ const FindCandidate: FC<Props> = ({ text, content }) => {
                   />
                 ))}
               </div>
-              <Button styleType="bg">{text.bottonText}</Button>
+              <Button
+                styleType="bg"
+                onClick={() => {
+                  push(`${ROUTES.AUTH.REGISTRATION}?role=candidate`);
+                }}
+              >
+                {text.bottonText}
+              </Button>
             </div>
             <figure className={s.imageContent}>
               <Image src="/images/pages/home/yourWay/movie.png" alt="movie" fill />

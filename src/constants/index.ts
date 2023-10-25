@@ -2,6 +2,8 @@ import ROUTES from '@/constants/routes';
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export const STORAGE_API_URL = process.env.NEXT_PUBLIC_STORAGE_API_URL;
+export const SECRET = process.env.NEXT_PUBLIC_SECRET;
+export const NEXTAUTH_URL = process.env.NEXT_PUBLIC_NEXTAUTH_URL;
 
 export const LINKS = [
   { text: 'Home', link: ROUTES.DEFAULT },

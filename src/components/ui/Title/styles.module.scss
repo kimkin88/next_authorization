@@ -34,3 +34,17 @@
     display: inline-block;
   }
 }
+.purpleH2 {
+  @include h2;
+  color: $white;
+
+  span {
+    background: linear-gradient(45deg, $purple, $pink);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+}

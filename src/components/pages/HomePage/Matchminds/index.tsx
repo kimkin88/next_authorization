@@ -1,8 +1,12 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
 import AnimatedSection from '@/components/animated/AnimatedSection';
 import SectionLabel from '@/components/pages/HomePage/common/SectionLabel';
 import { Title } from '@/components/ui';
+import ROUTES from '@/constants/routes';
 
 import Folder from './Folder';
 import s from './styles.module.scss';
@@ -20,6 +24,8 @@ interface Props {
 }
 
 const Matchminds: FC<Props> = ({ text, content }) => {
+  const { push } = useRouter();
+
   return (
     <AnimatedSection>
       <div className={s.wrapper}>
@@ -38,6 +44,13 @@ const Matchminds: FC<Props> = ({ text, content }) => {
                 orangeText={orandeText}
                 description={description}
                 buttonText={bottonText}
+                onClick={() => {
+                  push(
+                    `${ROUTES.AUTH.REGISTRATION}?role=${
+                      idx === 0 ? 'candidate' : 'company'
+                    }`,
+                  );
+                }}
               />
             ))}
           </div>

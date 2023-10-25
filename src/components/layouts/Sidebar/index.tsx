@@ -2,6 +2,9 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { useCookies } from 'next-client-cookies';
 import { FC, useCallback, useEffect, useRef } from 'react';
 
 import ListItem from '@/components/animated/ListItem';
@@ -17,7 +20,6 @@ import {
 } from '@/utils/animations';
 
 import s from './styles.module.scss';
-
 interface SideNavProps {
   isActive: boolean;
   onClose: () => void;
@@ -25,7 +27,8 @@ interface SideNavProps {
 
 const Sidebar: FC<SideNavProps> = ({ isActive, onClose }) => {
   const ref = useRef<HTMLElement | null>(null);
-
+  const { data: session } = useSession();
+  const cookies = useCookies();
   const { push } = useRouter();
 
   const reset = useCallback(() => {
@@ -71,12 +74,39 @@ const Sidebar: FC<SideNavProps> = ({ isActive, onClose }) => {
             exit="exit"
             className={s.btnsContainer}
           >
-            <Button onClick={() => push(ROUTES.AUTH.REGISTRATION)} styleType="bg">
-              Sign up
-            </Button>
-            <Button onClick={() => push(ROUTES.AUTH.LOGIN)} styleType="clear">
-              Log in
-            </Button>
+            {session ? (
+              <Button
+                onClick={() => {
+                  signOut();
+                  cookies.remove('apiToken');
+                  reset();
+                }}
+                styleType="bg"
+              >
+                Sign out
+              </Button>
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    push(ROUTES.AUTH.REGISTRATION);
+                    reset();
+                  }}
+                  styleType="bg"
+                >
+                  Sign up
+                </Button>
+                <Button
+                  onClick={() => {
+                    push(ROUTES.AUTH.LOGIN);
+                    reset();
+                  }}
+                  styleType="clear"
+                >
+                  Log in
+                </Button>
+              </>
+            )}
           </motion.div>
         )}
       </motion.aside>

@@ -36,6 +36,25 @@ export const getInViewProps = (
   transition: { ...getTransition(duration) },
 });
 
+export const SHOW_HIDE_CONTENT = {
+  hidden: {
+    opacity: 0,
+    y: '20px',
+    display: 'none',
+    transition: {
+      ...getTransition(0.7),
+    },
+  },
+  visible: {
+    display: 'flex',
+    y: '0px',
+    opacity: 1,
+    transition: {
+      ...getTransition(0.7),
+    },
+  },
+};
+
 //inView
 
 export const FADE_IN_UP = {

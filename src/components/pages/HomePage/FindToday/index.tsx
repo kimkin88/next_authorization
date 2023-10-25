@@ -1,7 +1,11 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
 import AnimatedSection from '@/components/animated/AnimatedSection';
 import { Button, Title } from '@/components/ui';
+import ROUTES from '@/constants/routes';
 
 import s from './styles.module.scss';
 
@@ -16,16 +20,24 @@ interface Props {
 }
 
 const FindToday: FC<Props> = ({ text }) => {
+  const { push } = useRouter();
   return (
     <AnimatedSection>
       <div className={s.findToday}>
         <div className={s.contentWrapper}>
-          <Title name="h2" className={s.purple}>
+          <Title name="purpleH2">
             {text.whiteTitle} <span>{text.purpleTitle}</span>
           </Title>
           <div className={s.content}>
             <p>{text.text}</p>
-            <Button styleType="bg">{text.bottonText}</Button>
+            <Button
+              styleType="bg"
+              onClick={() => {
+                push(`${ROUTES.AUTH.REGISTRATION}?role=candidate`);
+              }}
+            >
+              {text.bottonText}
+            </Button>
           </div>
         </div>
       </div>

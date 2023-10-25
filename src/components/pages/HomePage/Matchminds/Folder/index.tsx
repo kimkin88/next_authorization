@@ -1,0 +1,26 @@
+import { FC } from 'react';
+
+import { Button, Title } from '@/components/ui';
+
+import s from './styles.module.scss';
+
+interface Props {
+  whiteText: string;
+  orangeText: string;
+  description: string;
+  buttonText?: string;
+}
+
+const Folder: FC<Props> = ({ whiteText, orangeText, description, buttonText }) => {
+  return (
+    <div className={s.folder}>
+      <Title name="h2">
+        {whiteText} <span>{orangeText}</span>
+      </Title>
+      <h5>{description}</h5>
+      <Button styleType="bg">{buttonText}</Button>
+    </div>
+  );
+};
+
+export default Folder;

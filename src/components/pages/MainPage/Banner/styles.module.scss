@@ -1,0 +1,42 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.banner {
+  width: 100%;
+  height: 800px;
+  background: url('../../../../../public/images/pages/main/banner/desktop.webp') no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+  position: relative;
+  @include md-device {
+    height: 600px;
+    padding: 40px 20px;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .title {
+    font-size: 80px;
+    line-height: 1.1;
+    text-align: center;
+    color: $white;
+    position: relative;
+    z-index: 2;
+    @include md-device {
+      font-size: 64px;
+    }
+    @include sm-device {
+      font-size: 32px;
+    }
+  }
+}

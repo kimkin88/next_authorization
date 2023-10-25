@@ -1,0 +1,23 @@
+@import 'src/styles/variables';
+@import 'src/styles/pages/candidate';
+
+.card {
+  @include candidate-block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .text {
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 20px;
+    & > span {
+      color: $candidate-gray;
+    }
+  }
+  .socialNetworks {
+    & > p {
+      margin-bottom: 8px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import 'src/styles/variables';
+@import 'src/styles/pages/candidate';
+
+.block {
+  @include candidate-block;
+  .title {
+    @include candidate-title;
+  }
+  .content {
+    .companyInfo {
+      margin-bottom: 24px;
+      & > h3 {
+        font-weight: 700;
+        font-size: 21px;
+        line-height: 1.3;
+        margin-bottom: 4px;
+      }
+      & > p {
+        font-size: 16px;
+        margin-bottom: 0;
+      }
+    }
+    .workInfo {
+      margin-bottom: 20px;
+      .candidatePosition {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21px;
+        margin-bottom: 4px;
+      }
+      .workDuration {
+        font-size: 16px;
+        line-height: 21px;
+      }
+    }
+    .description {
+      margin-bottom: 20px;
+    }
+    .technologies {
+      display: flex;
+      flex-wrap: wrap;
+      .technology {
+        display: flex;
+        p {
+          font-size: 16px;
+          line-height: 21px;
+        }
+      }
+
+      .dot {
+        margin: 0 4px;
+        color: $candidate-gray;
+      }
+    }
+  }
+}

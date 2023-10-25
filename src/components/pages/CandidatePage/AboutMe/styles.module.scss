@@ -1,0 +1,9 @@
+@import 'src/styles/variables';
+@import 'src/styles/pages/candidate';
+
+.card {
+  @include candidate-block;
+  .title {
+    @include candidate-title;
+  }
+}

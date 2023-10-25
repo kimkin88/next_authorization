@@ -1,0 +1,12 @@
+@import 'src/styles/mixins';
+
+.container {
+  @include padding-top-bottom;
+  .title {
+    font-size: 48px;
+    margin-bottom: 40px;
+    @include md-device {
+      margin-bottom: 24px;
+    }
+  }
+}

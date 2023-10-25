@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+
+.simpleButton {
+  cursor: pointer;
+  color: $white;
+  padding: 0.5rem 2rem;
+  height: 2.5rem;
+  font: $normal;
+  border-radius: 37.5rem;
+  text-wrap: nowrap;
+  width: fit-content;
+}
+
+.clear {
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.outline {
+  padding: 0.625rem 1rem;
+  text-transform: uppercase;
+  color: $dirty-white;
+  background: transparent;
+  border: 1px solid;
+  border-image-source: $outline-btn;
+}
+
+.bg {
+  background: $bg-btn;
+  border: none;
+}

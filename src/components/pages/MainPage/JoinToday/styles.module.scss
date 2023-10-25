@@ -1,0 +1,25 @@
+@import 'src/styles/mixins';
+@import 'src/styles/variables';
+
+.section {
+  @include padding-top-bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: $primary;
+  color: $white;
+  .title {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: $white;
+  }
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .buttonBlock {
+    display: flex;
+    justify-content: center;
+  }
+}

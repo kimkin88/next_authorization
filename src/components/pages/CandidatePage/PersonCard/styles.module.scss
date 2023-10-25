@@ -1,0 +1,29 @@
+@import 'src/styles/variables';
+@import 'src/styles/pages/candidate';
+
+.card {
+  width: 100%;
+  @include candidate-block;
+  .avatar {
+    padding: 30px 0 43px;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+  }
+  .name {
+    color: $black;
+    margin-bottom: 12px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .salaryAndStatus {
+    font-weight: 700;
+    font-size: 16px;
+    color: $candidate-green;
+    margin-bottom: 0;
+  }
+}
